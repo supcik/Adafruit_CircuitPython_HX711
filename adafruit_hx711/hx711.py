@@ -122,8 +122,8 @@ class HX711:
             self._clock_pin.value = False
 
         # Convert to 32-bit signed integer
-        if value & 0x800000:
-            value |= 0xFF000000
+        if value & 0x80_00_00:
+            value -= 0x1_00_00_00
 
         return value
 
