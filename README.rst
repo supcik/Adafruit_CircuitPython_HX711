@@ -38,6 +38,8 @@ or individual libraries can be installed using
 
 `Purchase one from the Adafruit shop <http://www.adafruit.com/products/5974>`_
 
+This driver does not support MCU's without longint support.
+
 Installing from PyPI
 =====================
 

@@ -123,7 +123,7 @@ class HX711:
 
         # Convert to 32-bit signed integer
         if value & 0x80_00_00:
-            value -= 0x1_00_00_00
+            value |= 0xFF_00_00_00
 
         return value
 
