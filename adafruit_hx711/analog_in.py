@@ -14,12 +14,11 @@ AnalogIn for ADC readings.
 from adafruit_hx711.hx711 import HX711
 
 try:
-    from typing import Union  # pylint: disable=unused-import
+    from typing import Union
 except ImportError:
     pass
 
 
-# pylint: disable=too-few-public-methods
 class AnalogIn:
     """AnalogIn Mock Implementation for ADC Reads.
 
