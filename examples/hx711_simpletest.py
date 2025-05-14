@@ -3,10 +3,12 @@
 # SPDX-License-Identifier: MIT
 
 import time
+
 import board
 import digitalio
-from adafruit_hx711.hx711 import HX711
+
 from adafruit_hx711.analog_in import AnalogIn
+from adafruit_hx711.hx711 import HX711
 
 data = digitalio.DigitalInOut(board.D5)
 data.direction = digitalio.Direction.INPUT

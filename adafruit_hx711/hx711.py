@@ -27,7 +27,8 @@ Implementation Notes
 import time
 
 try:
-    from typing import Union  # pylint: disable=unused-import
+    from typing import Union
+
     import digitalio
 except ImportError:
     pass
@@ -43,9 +44,7 @@ class HX711:
     CHAN_A_GAIN_64 = 27
     CHAN_B_GAIN_32 = 26
 
-    def __init__(
-        self, data_pin: digitalio.DigitalInOut, clock_pin: digitalio.DigitalInOut
-    ) -> None:
+    def __init__(self, data_pin: digitalio.DigitalInOut, clock_pin: digitalio.DigitalInOut) -> None:
         """
         Initialize the HX711 module.
 
@@ -79,9 +78,7 @@ class HX711:
         :param chan_gain: Gain and channel configuration.
         :return: ADC value.
         """
-        self._read_channel(
-            chan_gain
-        )  # First, set the desired gain and discard this read
+        self._read_channel(chan_gain)  # First, set the desired gain and discard this read
         return self._read_channel(chan_gain)  # Now perform the actual read
 
     def _read_channel(self, chan_gain: int) -> int:
@@ -92,9 +89,7 @@ class HX711:
         :return: ADC value.
         """
         return self._read_channel_raw(chan_gain) - (
-            self._tare_value_b
-            if chan_gain == self.CHAN_B_GAIN_32
-            else self._tare_value_a
+            self._tare_value_b if chan_gain == self.CHAN_B_GAIN_32 else self._tare_value_a
         )
 
     def _read_channel_raw(self, chan_gain: int) -> int:
