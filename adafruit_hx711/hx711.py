@@ -39,9 +39,7 @@ __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/your-repo/Adafruit_CircuitPython_HX711.git"
 
 
-def read_fast(
-    clock_pin: digitalio.DigitalInOut, data_pin: digitalio.DigitalInOut, size: int
-):
+def read_fast(clock_pin: digitalio.DigitalInOut, data_pin: digitalio.DigitalInOut, size: int):
     value: int = 0  # return value
     assert not clock_pin.value
     assert size > 0
@@ -73,9 +71,7 @@ class HX711:
     CHAN_A_GAIN_64 = 27
     CHAN_B_GAIN_32 = 26
 
-    def __init__(
-        self, data_pin: digitalio.DigitalInOut, clock_pin: digitalio.DigitalInOut
-    ) -> None:
+    def __init__(self, data_pin: digitalio.DigitalInOut, clock_pin: digitalio.DigitalInOut) -> None:
         """
         Initialize the HX711 module.
 
@@ -121,9 +117,7 @@ class HX711:
         :return: ADC value.
         """
         return self._read_channel_raw(chan_gain) - (
-            self._tare_value_b
-            if chan_gain == self.CHAN_B_GAIN_32
-            else self._tare_value_a
+            self._tare_value_b if chan_gain == self.CHAN_B_GAIN_32 else self._tare_value_a
         )
 
     def _read_channel_raw(self, chan_gain: int) -> int:
@@ -137,9 +131,7 @@ class HX711:
             pass  # Wait until the HX711 is ready
 
         self._clock_pin.value = False
-        value = read_fast(self._clock_pin, self._data_pin, chan_gain) >> (
-            chan_gain - 24
-        )
+        value = read_fast(self._clock_pin, self._data_pin, chan_gain) >> (chan_gain - 24)
 
         # Convert to 32-bit signed integer
         if value & 0x80_00_00:
